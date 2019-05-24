@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blue</title>
+    <link rel="stylesheet" href="/assets/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+    <div class="jumbotron" style="text-align: center">
+    <h1>Blue</h1>
+    <p>Please wait while we retrieve your message !</p></div></div>
+    <div class="container">
+    <textarea class="form-control" name="msgForRed" id="msgForRed" cols="30" rows="10"></textarea>
+    <br>
+    <button class="btn btn-primary btn-lg" onclick="bluess()" style="float: right;">Send</button></div>
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCZ2Fr1o8NY0TVsdIUYAvJxaTQvNxq1LhQ",
+            authDomain: "python1618.firebaseapp.com",
+            databaseURL: "https://python1618.firebaseio.com",
+            projectId: "python1618",
+            storageBucket: "python1618.appspot.com",
+            messagingSenderId: "1002113697479",
+            appId: "1:1002113697479:web:6d5aaa4836281403"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script>
+        function bluess() {
+            var msb = document.getElementById("msgForRed");
+            var firebaseRefR = firebase.database().ref();
+            firebaseRefR.child("textBlueToRed").set(msb.value);
+        }
+    </script>
+    <script src="/assets/jquery.min.js"></script>
+    <script src="/assets/bootstrap.min.js"></script>
+    <script src="/assets/popper.min.js"></script>
+</body>
+
+</html>
