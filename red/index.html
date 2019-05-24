@@ -12,13 +12,14 @@
     <div class="container">
         <div class="jumbotron" style="text-align: center">
             <h1>Red</h1>
-            <p>Please wait while we retrieve your message !</p>
+            <p id="mfb">Please wait while we retrieve your message !</p>
         </div>
     </div>
     <div class="container">
-    <textarea class="form-control" name="msgForBlue" id="msgForBlue" cols="30" rows="10"></textarea>
-    <br>
-    <button class="btn btn-danger btn-lg" onclick="reds()" style="float: right">Send</button></div>
+        <textarea class="form-control" name="msgForBlue" id="msgForBlue" cols="30" rows="10"></textarea>
+        <br>
+        <button class="btn btn-danger btn-lg" onclick="reds()" style="float: right">Send</button>
+    </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
@@ -42,10 +43,17 @@
         firebase.initializeApp(firebaseConfig);
     </script>
     <script>
+        var mb = document.getElementById("mfb");
+        var fmb = firebase.database().ref().child("textBlueToRed");
+        fmb.on('value', function (datasnapshot) {
+            mfb.innerText = datasnapshot.val();
+        });
+    </script>
+    <script>
         function reds() {
             var msr = document.getElementById("msgForBlue");
-            var firebaseRefR = firebase.database().ref();
-            firebaseRefR.child("textRedToBlue").set(msr.value);
+            var firebaseRefB = firebase.database().ref();
+            firebaseRefB.child("textRedToBlue").set(msr.value);
         }
     </script>
     <script src="/assets/jquery.min.js"></script>

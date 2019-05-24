@@ -12,7 +12,7 @@
     <div class="container">
     <div class="jumbotron" style="text-align: center">
     <h1>Blue</h1>
-    <p>Please wait while we retrieve your message !</p></div></div>
+    <p id="mfr">Please wait while we retrieve your message !</p></div></div>
     <div class="container">
     <textarea class="form-control" name="msgForRed" id="msgForRed" cols="30" rows="10"></textarea>
     <br>
@@ -38,6 +38,13 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+    </script>
+    <script>
+        var mr = document.getElementById("mfr");
+        var fmr = firebase.database().ref().child("textRedToBlue");
+        fmr.on('value', function(datasnapshot){
+            mr.innerText = datasnapshot.val();
+        });
     </script>
     <script>
         function bluess() {
